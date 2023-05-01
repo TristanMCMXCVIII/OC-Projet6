@@ -28,6 +28,7 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
@@ -211,7 +212,6 @@ footer nav ul {
 
 	text-align: center;
 	border-radius: 60px;
-	
 }
 
 .filter__button:focus, 
@@ -227,3 +227,7 @@ footer nav ul {
 
 
 */
+
+.hidden{
+	display : none;
+}

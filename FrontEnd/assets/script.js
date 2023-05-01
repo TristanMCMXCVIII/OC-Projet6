@@ -1,19 +1,3 @@
-// FUNCTION //
-
-
-async function fetchData(url) {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-}
-
-fetchData('http://localhost:5678/api/works')
-    .then(data => console.log(data));
-
 
 
 fetch('http://localhost:5678/api/works')
@@ -69,7 +53,7 @@ fetch('http://localhost:5678/api/categories')
     .then(function(value) {
         console.log(value);
 
-        const filterList = document.getElementById('filter');
+        const filterList = document.getElementById('filter');//
 
         const allFilters = document.createElement('button');
         allFilters.classList.add('filter__button');
