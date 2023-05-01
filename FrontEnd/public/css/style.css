@@ -1,0 +1,36 @@
+h3 {
+  background-color: blue;
+}
+h3:hover {
+  background-color: rgb(140, 14, 230);
+}
+
+#filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 10px;
+}
+#filter .filter__button {
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #1D6154;
+  background-color: white;
+  border-color: #1D6154;
+  height: 37px;
+  padding: 0px 30px 0px 30px;
+  margin: 10px 0px 40px 0px;
+  text-align: center;
+  border-radius: 60px;
+}
+#filter .filter__button:focus, #filter .filter__button:active {
+  color: white;
+  background-color: #1D6154;
+  border-radius: 1;
+  border-color: white;
+  border: none;
+}
+
+/*# sourceMappingURL=style.css.map */
