@@ -1,8 +1,9 @@
-h3 {
-  background-color: blue;
+html {
+  scroll-behavior: smooth;
 }
-h3:hover {
-  background-color: rgb(140, 14, 230);
+
+:root {
+  --primary: #1D6154;
 }
 
 #filter {
@@ -31,6 +32,68 @@ h3:hover {
   border-radius: 1;
   border-color: white;
   border: none;
+}
+
+#login__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 20px;
+}
+#login__form > div {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+#login__form > div > input {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  height: 30px;
+  padding: 10px;
+  background-color: white;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#login__form > div > input:focus {
+  border: none;
+}
+#login__form > button {
+  align-self: center;
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: white;
+  background-color: #1D6154;
+  height: 35px;
+  width: 180px;
+  padding: 0px 30px 0px 30px;
+  margin: 10px 0px 40px 0px;
+  text-align: center;
+  border: none;
+  border-radius: 60px;
+}
+#login__form > button:hover {
+  background-color: #298876;
+}
+
+.password-forgotten {
+  text-decoration: underline;
+}
+
+#login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#login .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  row-gap: 40px;
+  width: 400px;
 }
 
 /*# sourceMappingURL=style.css.map */

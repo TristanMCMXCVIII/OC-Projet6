@@ -21,6 +21,32 @@ async function getData(url) {
 };
 
 
+function displayWorks(allWorks){
+    const worksElement = document.querySelector('#portfolio .gallery');
+    console.log(allWorks);
+
+    for (let work of allWorks){
+
+        console.log(work);
+        const workElement = document.createElement('figure');
+        workElement.setAttribute('category', work.category.name);
+
+        const workImage = document.createElement('img');
+        workImage.setAttribute('src', work.imageUrl);
+        workImage.setAttribute('alt', work.title);
+
+        workElement.appendChild(workImage);
+
+        const workDescription = document.createElement('figcaption');
+        workDescription.textContent = work.title;
+
+        workElement.appendChild(workDescription);
+
+        worksElement.appendChild(workElement);
+    };
+};
+
+
 function removeWorks(){
     const gallery = document.querySelector('#portfolio .gallery');
 
@@ -63,38 +89,13 @@ function displayFilterButtons(allCategories, allWorks){
 };
 
 
-function displayWorks(allWorks){
-    const worksElement = document.querySelector('#portfolio .gallery');
-    console.log(allWorks);
 
-    for (let work of allWorks){
 
-        console.log(work);
-        const workElement = document.createElement('figure');
-        workElement.setAttribute('category', work.category.name);
 
-        const workImage = document.createElement('img');
-        workImage.setAttribute('src', work.imageUrl);
-        workImage.setAttribute('alt', work.title);
-
-        workElement.appendChild(workImage);
-
-        const workDescription = document.createElement('figcaption');
-        workDescription.textContent = work.title;
-
-        workElement.appendChild(workDescription);
-
-        worksElement.appendChild(workElement);
-    };
-};
-
+// INITIALISATION
 
 Promise.all([getData(urlWorks), getData(urlCategories)])
     .then(([allWorks, allCategories]) => {
-        //console.log("Nouveau fichier JS")
-        //console.log(allWorks);
-        //console.log(allCategories);
-
         
         displayWorks(allWorks);
         displayFilterButtons(allCategories, allWorks);
