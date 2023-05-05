@@ -1,0 +1,86 @@
+.button-primary {
+    align-self: center;
+
+    font-family: 'Syne';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: white;
+    background-color: $primary;
+
+    height: 35px;
+    width: auto;
+
+    padding: 0px 30px 0px 30px;
+
+    text-align: center;
+
+    border: none;
+    border-radius: 60px;
+
+    &:hover{
+        background-color: lighten($primary, 10%);
+    }
+}
+
+.button-delete {
+    font-family: 'Syne';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+
+    text-align: center;
+
+    color: $delete;
+    background-color: transparent;
+    
+    border: none;
+
+    &:hover{
+        text-decoration: underline;
+    }
+
+}
+
+
+.gallery-action__button {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 17px;
+    width: 17px;
+
+    border: none;
+    border-radius: 2px;
+
+
+    background-color: black;
+
+    &:hover {
+        background-color: $secondary;
+    }
+}
+
+
+.edit-work__button {
+    text-align: left;
+    padding: 0px;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    font-family: 'Work Sans' ;
+
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        color: $secondary;
+        text-decoration: underline;
+    }
+
+}

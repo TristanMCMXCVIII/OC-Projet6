@@ -19,3 +19,7 @@ Lien pour voir la
 [documentation Swagger](http://localhost:5678/api-docs/)
 
 Pour lire la documentation, utiliser Chrome ou Firefox
+
+
+token 4 mai à 19h20 : 
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4MzIyMDkxMywiZXhwIjoxNjgzMzA3MzEzfQ.bmxJpqzOBdxZynkWujyTuhCkdkMM4VR0ezafouJGPg8
