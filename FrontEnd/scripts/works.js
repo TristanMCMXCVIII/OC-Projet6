@@ -23,11 +23,9 @@ async function getData(url) {
 
 function displayWorks(allWorks){
     const worksElement = document.querySelector('#portfolio .gallery');
-    console.log(allWorks);
 
     for (let work of allWorks){
 
-        console.log(work);
         const workElement = document.createElement('figure');
         workElement.setAttribute('category', work.category.name);
 
@@ -89,9 +87,6 @@ function displayFilterButtons(allCategories, allWorks){
 };
 
 
-
-
-
 // INITIALISATION
 
 Promise.all([getData(urlWorks), getData(urlCategories)])
@@ -99,7 +94,6 @@ Promise.all([getData(urlWorks), getData(urlCategories)])
         
         displayWorks(allWorks);
         displayFilterButtons(allCategories, allWorks);
-
     })
     .catch( error => {
         console.error("erreur lors de la réception des données : ", error);

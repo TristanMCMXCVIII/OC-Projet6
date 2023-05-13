@@ -2,6 +2,19 @@ html {
   scroll-behavior: smooth;
 }
 
+h3 {
+  color: #000;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 31px;
+}
+
+.separator {
+  width: 70%;
+  height: 1px;
+  background-color: #B3B3B3;
+}
+
 .button-primary {
   align-self: center;
   font-family: "Syne";
@@ -35,7 +48,7 @@ html {
   text-decoration: underline;
 }
 
-.gallery-action__button {
+.figure-action__button {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,7 +59,7 @@ html {
   border-radius: 2px;
   background-color: black;
 }
-.gallery-action__button:hover {
+.figure-action__button:hover {
   background-color: #B1663C;
 }
 
@@ -63,6 +76,22 @@ html {
 .edit-work__button:hover {
   color: #B1663C;
   text-decoration: underline;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #323232;
+  background-color: transparent;
+  cursor: pointer;
+}
+.modal-close:hover {
+  color: red;
 }
 
 .editionBanner {
@@ -185,35 +214,7 @@ html {
   text-decoration: underline;
 }
 
-.modal-container {
-  visibility: hidden;
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  transition: visibility 0.4s;
-}
-
-.modal-container.active {
-  visibility: visible;
-  transition: visibility 0s;
-}
-
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(51, 51, 51, 0.8274509804);
-  opacity: 0;
-  transition: opacity 0.4s 0.2s ease-out;
-}
-
-.modal-container.active .overlay {
-  opacity: 1;
-  transition: opacity 0.4s ease-out;
-}
-
-.modal-gallery {
+.modal {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -227,31 +228,16 @@ html {
   border-radius: 5px;
   top: 45%;
   left: 50%;
-  transform: translate(-50%, calc(-50% - 50px));
   opacity: 0;
+  transform: translate(-50%, calc(-50% - 50px));
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
-.modal-gallery .close-modal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 8px 10px;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  color: #323232;
-  background-color: transparent;
-  cursor: pointer;
+.modal.active {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
 }
-.modal-gallery .close-modal:hover {
-  color: red;
-}
-.modal-gallery h3 {
-  color: #000;
-  font-size: 26px;
-  font-weight: 400;
-  line-height: 31px;
-}
+
 .modal-gallery .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -263,12 +249,26 @@ html {
   height: auto;
 }
 .modal-gallery .grid-container .grid-item:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
-.modal-gallery .separator {
-  width: 70%;
-  height: 1px;
-  background-color: #B3B3B3;
+.modal-gallery .grid-container .grid-item .figure-action {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  top: 6px;
+  right: 6px;
+  column-gap: 3px;
+  color: white;
+}
+.modal-gallery .grid-container .grid-item .modal-figure {
+  display: flex;
+  flex-direction: column;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+.modal-gallery .grid-container .grid-item .modal-figure img {
+  width: 100%;
 }
 .modal-gallery .modale-gallery-actions {
   display: flex;
@@ -277,33 +277,6 @@ html {
   align-items: center;
   width: 100%;
   row-gap: 20px;
-}
-
-.modal-container.active .modal-gallery {
-  transform: translate(-50%, -50%);
-  opacity: 1;
-  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
-}
-
-.modal-figure {
-  display: flex;
-  flex-direction: column;
-  object-fit: cover;
-  width: 100%;
-  height: auto;
-}
-.modal-figure img {
-  width: 100%;
-}
-
-.gallery-action {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  top: 6px;
-  right: 6px;
-  column-gap: 3px;
-  color: white;
 }
 
 #login {
@@ -318,6 +291,31 @@ html {
   padding: 10px;
   row-gap: 40px;
   width: 400px;
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  visibility: hidden;
+  transition: visibility 0.4s;
+}
+.modal-container .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.8274509804);
+  opacity: 0;
+  transition: opacity 0.4s 0.2s ease-out;
+}
+.modal-container.active {
+  visibility: visible;
+  transition: visibility 0s;
+}
+.modal-container.active .overlay {
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
 }
 
 /*# sourceMappingURL=style.css.map */

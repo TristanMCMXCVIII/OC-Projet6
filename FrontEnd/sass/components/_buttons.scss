@@ -44,7 +44,7 @@
 }
 
 
-.gallery-action__button {
+.figure-action__button {
     display: flex;
     flex-direction: column;
 
@@ -82,5 +82,26 @@
         color: $secondary;
         text-decoration: underline;
     }
+}
 
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+
+    font-size: 18px;
+    color: #323232;
+
+    background-color: transparent;
+
+    cursor: pointer;
+
+    &:hover {
+        color: red;
+    }
 }
