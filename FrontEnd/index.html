@@ -97,90 +97,30 @@
 
 	<!-- xxxxxx MODALES xxxxxxx  -->
 
-	<div class="modal-container"> <!-- englobe la modale et l'overlay -->
-		<div class="overlay trigger-modal-close"></div> <!-- overlay sur lequel on peut cliquer pour enclencher le toggle et quitter la modale -->
+	<div class="modal-container"> 
+		<div class="overlay trigger-modal-close"></div> 
 		
 		<!-- MODALE 1 : gallery -->
-		<div class="modal modal-gallery">
+		<div class="modal" id="modal-gallery">
+
 			<button class="modal-close trigger-modal-close"><i class="fa-solid fa-x"></i></button>
+
 			<h3>Galerie photo</h3>
 			<div class="grid-container">
-
-				<div class="grid-item">
-					<div class="figure-action">
-						<button class="figure-action__button">
-							<i class="fa-solid fa-arrows-up-down-left-right fa-xs" style="color: #ffffff;"></i>
-						</button>
-						<button class="figure-action__button">
-							<i class="fa-regular fa-trash-can fa-xs" style="color: #ffffff;"></i>
-						</button>
-					</div>
-					<figure class="modal-figure">
-						<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
-						<button class="edit-work__button">éditer</button>
-					</figure>
-				</div>
-
-				<!--
-				<div class="grid-item">
-					<div class="gallery-action">
-						<button class="gallery-action__button"><i class="fa-regular fa-trash-can fa-xs" style="color: #ffffff;"></i></button>
-					</div>
-					<figure class="modal-figure">
-						<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
-						<button class="edit-work__button">éditer</button>
-					</figure>
-				</div>
-				<div class="grid-item">
-					<div class="gallery-action">
-						<button class="gallery-action__button"><i class="fa-regular fa-trash-can fa-xs" style="color: #ffffff;"></i></button>
-					</div>
-					<figure class="modal-figure">
-						<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
-						<button class="edit-work__button">éditer</button>
-					</figure>
-				</div>
-				<div class="grid-item">
-					<div class="gallery-action">
-						<button class="gallery-action__button"><i class="fa-regular fa-trash-can fa-xs" style="color: #ffffff;"></i></button>
-					</div>
-					<figure class="modal-figure">
-						<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
-						<button class="edit-work__button">éditer</button>
-					</figure>
-				</div>
-				<div class="grid-item">
-					<div class="gallery-action">
-						<button class="gallery-action__button"><i class="fa-regular fa-trash-can fa-xs" style="color: #ffffff;"></i></button>
-					</div>
-					<figure class="modal-figure">
-						<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
-						<button class="edit-work__button">éditer</button>
-					</figure>
-				</div>
-				<div class="grid-item">
-					<div class="gallery-action">
-						<button class="gallery-action__button"><i class="fa-regular fa-trash-can fa-xs" style="color: #ffffff;"></i></button>
-					</div>
-					<figure class="modal-figure">
-						<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
-						<button class="edit-work__button">éditer</button>
-					</figure>
-				</div> -->
+				<!-- JS inserts works -->
 			</div>
 
 			<div class="separator"></div>
-	
+
 			<div class="modale-gallery-actions">
-				<button class="button-primary trigger-modal-add-from-other">Ajouter une photo</button>	
+				<button class="button-primary trigger-modal-add-from-other" style="background-color: blue;">Ajouter une photo</button>	
 				<button class="button-delete">Supprimer la galerie</button>
 			</div>
-			
 		</div>
 
 		<!-- MODALE 2 : add work -->
 
-		<div class="modal modal-add">
+		<div class="modal" id="modal-add">
 			<button class="modal-close trigger-modal-close"><i class="fa-solid fa-x"></i></button>
 			<h3>Ajout photo</h3>
 			
@@ -214,7 +154,7 @@
 			
 	
 			<div class="modale-gallery-actions">
-				<button class="button-primary trigger-modal-gallery-from-other">Valider</button>	
+				<button class="button-primary trigger-modal-gallery-from-other">Valider</button> 
 			</div>
 		</div>
 

@@ -1,46 +1,36 @@
-/*
-const modalContainer = document.querySelector(".modal-container");
-const modalTriggers = document.querySelectorAll(".modal-trigger");
+/////////////////////
+/// MODAL ROUTERS ///
+/////////////////////
 
-modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal))
 
-function toggleModal() {
-    modalContainer.classList.toggle("active"); //ajoute la classe si elle n'y est pas ou non
-}
-*/
-
-// FUNCTIONS : look for active classes in other modals, remove them, active the the modal
-
-function hideOverlay() {
-    document.querySelector(".modal-container").classList.remove('active');
-};
+// Functions
 
 function showOverlay() {
     document.querySelector(".modal-container").classList.add('active');
 };
 
-// - - - - - - - - - - -
+function showModal(modal) {
+    modal.classList.add('active');
+};
 
 function hideModals() {
     document.querySelectorAll('.modal').forEach( modal => {
         if(modal.classList.contains('active')) {
-            modal.style.display ='none';
             modal.classList.remove('active');
         }
     });
 };
 
-function showModal(modal) {
-    modal.style.display = 'flex'; 
-    modal.classList.add('active');
+function hideOverlay() {
+    document.querySelector(".modal-container").classList.remove('active');
 };
 
 
-// EVENT LISTENER using theses functions
+// Triggers open/close/change modal
 
 document.querySelectorAll('.trigger-modal-close').forEach( trigger => {
     trigger.addEventListener("click", () => {
-        console.log('dans trigger -close-');
+        console.log("modal -> site");
         hideOverlay();
         hideModals();
     });
@@ -48,18 +38,19 @@ document.querySelectorAll('.trigger-modal-close').forEach( trigger => {
 
 document.querySelectorAll('.trigger-modal-gallery').forEach( trigger => {
     trigger.addEventListener("click", () => {
-        console.log('dans trigger -gallery-');
+        console.log("site-> gallery");
+        hideModals();
         showOverlay();
-        const modalGallery = document.querySelector('.modal-gallery');
+        const modalGallery = document.querySelector('#modal-gallery');
         showModal(modalGallery);
     });
 });
 
 document.querySelectorAll('.trigger-modal-gallery-from-other').forEach( trigger => {
     trigger.addEventListener("click", () => {
-        console.log('dans trigger -gallery- from other');
+        console.log("ModalX -> gallery");
         hideModals();
-        const modalGallery = document.querySelector('.modal-gallery');
+        const modalGallery = document.querySelector('#modal-gallery');
         showModal(modalGallery);
     });
 });
@@ -67,9 +58,9 @@ document.querySelectorAll('.trigger-modal-gallery-from-other').forEach( trigger 
 
 document.querySelectorAll('.trigger-modal-add-from-other').forEach( trigger => {
     trigger.addEventListener("click", () => {
-        console.log('dans trigger -add- from other');
+        console.log("ModalX -> add work");
         hideModals();
-        const modalAdd = document.querySelector('.modal-add');
+        const modalAdd = document.querySelector('#modal-add');
         showModal(modalAdd);
     });
 });
@@ -83,7 +74,7 @@ document.querySelectorAll('.trigger-modal-add-from-other').forEach( trigger => {
 
 
 function displayWorksInModal(allWorks) {
-    const gridContainerElement = document.querySelector('.modal-gallery .grid-container');
+    const gridContainerElement = document.querySelector('#modal-gallery .grid-container');
 
     allWorks.forEach( (work) => {
         console.log(work);
@@ -119,7 +110,7 @@ function displayWorksInModal(allWorks) {
         figureActionButtonTrashElement.addEventListener('click', (event) => {
             event.preventDefault();
             console.log(work.id);
-            console.log(getCookie('jwt')); //  ERR
+            console.log(getCookie('jwt')); 
             fetch(`http://localhost:5678/api/works/${work.id}`, { 
                 method: 'DELETE',
                 headers: {
@@ -137,3 +128,9 @@ getData(urlWorks)
         console.log('frabrication des éléments de la modale avec ', allWorks);
         displayWorksInModal(allWorks);
     });
+
+
+
+////////////////////////////////////////
+//////////// MODAL ADD WORK ////////////
+////////////////////////////////////////

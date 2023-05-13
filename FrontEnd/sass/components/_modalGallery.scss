@@ -1,17 +1,19 @@
+/////////////////////
+/// MODAL GALLERY ///
+/////////////////////
 
-// RMQ avant d'activer la modale, activer le overlay (layout/modal.scss)
+#modal-gallery {
 
-.modal {
     position: absolute;
 
-    display: flex;
+    display: none; 
     flex-direction: column;
 
     align-items: center;
 
     row-gap: 40px;
 
-    width: 95%;
+    //width: 95%;
     max-width: 630px;
     min-width: 300px;
     padding: 50px;
@@ -28,17 +30,11 @@
 
     &.active {
 
+        display: flex;
         opacity: 1;
         transform: translate(-50%, -50%);  
         transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
     }
-}
-
-
-// -----------------------------
-
-
-.modal-gallery {
 
     .grid-container {
         display: grid;
@@ -97,6 +93,3 @@
         row-gap: 20px;
     }    
 }
-
-
-// -----------------------------

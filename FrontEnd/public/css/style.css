@@ -214,9 +214,73 @@ h3 {
   text-decoration: underline;
 }
 
-.modal {
+#modal-gallery {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 40px;
+  max-width: 630px;
+  min-width: 300px;
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 5px;
+  top: 45%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, calc(-50% - 50px));
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+#modal-gallery.active {
+  display: flex;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
+}
+#modal-gallery .grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  width: 70%;
+}
+#modal-gallery .grid-container .grid-item {
+  position: relative;
+  height: auto;
+}
+#modal-gallery .grid-container .grid-item:hover {
+  transform: scale(1.2);
+}
+#modal-gallery .grid-container .grid-item .figure-action {
   position: absolute;
   display: flex;
+  flex-direction: row;
+  top: 6px;
+  right: 6px;
+  column-gap: 3px;
+  color: white;
+}
+#modal-gallery .grid-container .grid-item .modal-figure {
+  display: flex;
+  flex-direction: column;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+#modal-gallery .grid-container .grid-item .modal-figure img {
+  width: 100%;
+}
+#modal-gallery .modale-gallery-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  row-gap: 20px;
+}
+
+#modal-add {
+  position: absolute;
+  display: none;
   flex-direction: column;
   align-items: center;
   row-gap: 40px;
@@ -232,51 +296,17 @@ h3 {
   transform: translate(-50%, calc(-50% - 50px));
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
-.modal.active {
+#modal-add.active {
+  display: flex;
   opacity: 1;
   transform: translate(-50%, -50%);
   transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
 }
 
-.modal-gallery .grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 10px;
-  width: 70%;
-}
-.modal-gallery .grid-container .grid-item {
-  position: relative;
-  height: auto;
-}
-.modal-gallery .grid-container .grid-item:hover {
-  transform: scale(1.2);
-}
-.modal-gallery .grid-container .grid-item .figure-action {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  top: 6px;
-  right: 6px;
-  column-gap: 3px;
-  color: white;
-}
-.modal-gallery .grid-container .grid-item .modal-figure {
+.insert-picture {
   display: flex;
   flex-direction: column;
-  object-fit: cover;
-  width: 100%;
-  height: auto;
-}
-.modal-gallery .grid-container .grid-item .modal-figure img {
-  width: 100%;
-}
-.modal-gallery .modale-gallery-actions {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  row-gap: 20px;
+  background-color: #E8F1F6;
 }
 
 #login {
