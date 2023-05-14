@@ -386,6 +386,10 @@ h3 {
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+.trigger-index-to-login {
+  cursor: pointer;
+}
+
 #login {
   display: flex;
   flex-direction: row;

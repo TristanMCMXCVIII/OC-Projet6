@@ -67,9 +67,9 @@ document.querySelectorAll('.trigger-modal-add-from-other').forEach( trigger => {
 
 
 
-///////////////////////////////////////
-//////////// MODAL GALLERY ////////////
-///////////////////////////////////////
+///////////////////////////////////////////
+//////////// MODAL 1 : GALLERY ////////////
+///////////////////////////////////////////
 
 
 
@@ -131,15 +131,19 @@ getData(urlWorks)
 
 
 
-////////////////////////////////////////
-//////////// MODAL ADD WORK ////////////
-////////////////////////////////////////
+////////////////////////////////////////////
+//////////// MODAL 2 : ADD WORK ////////////
+////////////////////////////////////////////
 
 const buttonAddWork = document.getElementById('picture-uploader__button--add-work');
 const inputAddWork = document.getElementById('picture-uploader__input--add-work');
 
 const uploaderVisualisation = document.querySelector('#form-add-work .picture-uploader__visualisation');
 const uploaderDropAnImage = document.querySelector('#form-add-work .picture-uploader__drop-an-image');
+
+
+const formData = new FormData();
+
 
 buttonAddWork.addEventListener('click', (event) => {
     event.preventDefault();
@@ -148,12 +152,15 @@ buttonAddWork.addEventListener('click', (event) => {
     inputAddWork.click();
 });
 
+
 inputAddWork.addEventListener('change', (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     const file = event.target.files[0];
     console.log(file);
+
+    formData.append('image', file); // append formData
 
     var reader = new FileReader();
     reader.onload = (e) => {
@@ -173,5 +180,37 @@ inputAddWork.addEventListener('change', (event) => {
     reader.readAsDataURL(file);
 
     console.log('done');
+});
+
+
+// valider le formulaire :
+
+
+document.getElementById('form-add-work').addEventListener('submit', (event) => {
+    event.preventDefault(); //empeche get plus redirection d'un form
+
+    formData.append('title', document.getElementById('input-title').value);
+    formData.append('category', document.getElementById('selector-categories').value);
+
+ 
+    for (const value of formData.values()) {
+        console.log(value);
+    };
+
+    console.log(getCookie('jwt'));
+
+    fetch(urlWorks,{
+        method: 'POST',
+        headers: {
+            'Authorization': "Bearer " + getCookie('jwt')
+        },
+        body: formData
+    })
+        .then( response => {
+            console.log('Nouveau projet envoyé avec succès', response);
+        })
+        .catch( error => {
+            console.error('Une erreur s\'est produite lors de l\'envoi de l\'image', error);
+        })
 });
 
