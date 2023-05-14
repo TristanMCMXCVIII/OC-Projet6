@@ -284,7 +284,7 @@ h3 {
   flex-direction: column;
   align-items: center;
   row-gap: 40px;
-  width: 95%;
+  width: 100%;
   max-width: 630px;
   min-width: 300px;
   padding: 50px;
@@ -303,10 +303,87 @@ h3 {
   transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
 }
 
-.insert-picture {
+#form-add-work {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 280px;
+  max-width: 450px;
+  width: 100%;
+  row-gap: 20px;
+}
+
+.picture-uploader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   background-color: #E8F1F6;
+}
+
+.uploaded-image {
+  height: 170px;
+  object-fit: contain;
+}
+
+.picture-uploader__drop-an-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  row-gap: 20px;
+}
+.picture-uploader__drop-an-image img {
+  width: 58px;
+  height: 46px;
+}
+.picture-uploader__drop-an-image button {
+  height: 36px;
+  padding: 10px 35px 10px 35px;
+  border-radius: 20px;
+  border: none;
+  background-color: #CBD6DC;
+  color: #306685;
+  font-family: "Work Sans";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+}
+.picture-uploader__drop-an-image button:hover {
+  background-color: #587483;
+  color: white;
+}
+.picture-uploader__drop-an-image.desactive {
+  display: none;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+  row-gap: 10px;
+}
+.form-input label {
+  font-family: "Work Sans";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #3D3D3D;
+}
+.form-input input {
+  height: 50px;
+  padding: 0px 10px;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.form-input select {
+  height: 50px;
+  padding: 0px 10px;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
 #login {

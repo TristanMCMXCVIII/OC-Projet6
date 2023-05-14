@@ -134,3 +134,44 @@ getData(urlWorks)
 ////////////////////////////////////////
 //////////// MODAL ADD WORK ////////////
 ////////////////////////////////////////
+
+const buttonAddWork = document.getElementById('picture-uploader__button--add-work');
+const inputAddWork = document.getElementById('picture-uploader__input--add-work');
+
+const uploaderVisualisation = document.querySelector('#form-add-work .picture-uploader__visualisation');
+const uploaderDropAnImage = document.querySelector('#form-add-work .picture-uploader__drop-an-image');
+
+buttonAddWork.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    inputAddWork.click();
+});
+
+inputAddWork.addEventListener('change', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const file = event.target.files[0];
+    console.log(file);
+
+    var reader = new FileReader();
+    reader.onload = (e) => {
+        const imageUrl = e.target.result;
+
+        const image = new Image();
+        image.classList.add('uploaded-image');
+        uploaderDropAnImage.classList.add('desactive');
+        image.onload = () => {
+            uploaderVisualisation.innerHTML = '';
+            uploaderVisualisation.appendChild(image);
+        };
+
+        image.src = imageUrl;
+    };
+
+    reader.readAsDataURL(file);
+
+    console.log('done');
+});
+

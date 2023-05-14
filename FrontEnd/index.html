@@ -107,13 +107,13 @@
 
 			<h3>Galerie photo</h3>
 			<div class="grid-container">
-				<!-- JS inserts works -->
+				<!-- JS display works -->
 			</div>
 
 			<div class="separator"></div>
 
 			<div class="modale-gallery-actions">
-				<button class="button-primary trigger-modal-add-from-other" style="background-color: blue;">Ajouter une photo</button>	
+				<button class="button-primary trigger-modal-add-from-other">Ajouter une photo</button>	
 				<button class="button-delete">Supprimer la galerie</button>
 			</div>
 		</div>
@@ -124,37 +124,39 @@
 			<button class="modal-close trigger-modal-close"><i class="fa-solid fa-x"></i></button>
 			<h3>Ajout photo</h3>
 			
-			<form id="add-work">
+			<form id="form-add-work">
 
-				<div class="insert-picture">
-					<img src="assets/icons/insert-picture.svg" alt="logo image">
-					<div class="insert-picture_button">
-						<input type="file" id="file-input" name="file-input" accept=".pdf, .png, .jpg, .jpeg" size="4194304" required>
-						<p>+ Ajouter photo</p>
+				<div class="picture-uploader">
+		
+					<div class="picture-uploader__visualisation">
+						<!-- JS display image uploaded -->
 					</div>
+					<div class="picture-uploader__drop-an-image">
+						<img src="assets/icons/insert-picture.svg" alt="logo image">
+						<input type="file" id="picture-uploader__input--add-work" name="file-input" accept=".pdf, .png, .jpg, .jpeg" size="4194304" hidden required>
+						<button id="picture-uploader__button--add-work">+ Ajouter photo</button>
+						<p class="picture-uploader__infos">jpg, png : 4mo max</p>
+					</div>					
 				</div>
 
-			
-				<label for="title">Titre :</label>
-				<input type="title" id="title" name="title" required> <!-- identifiant fonctionnel pré-rempli pour simplifier tests -->
-			
-				<label for="categorie">Catégorie :</label>
-				<select name="categorie" id="categorie">
-					<option value=""></option>
-					<option value="architecture">Architecture</option>
-					<option value="decoration">Décoration</option>
-					<option value="concept">Concept</option>
-				</select>
+				<div class="form-input">
+					<label for="title">Titre :</label>
+					<input type="title" id="title" name="title" required> 
+				</div>
 				
-				<button type="submit" id="submitLogin">Se connecter</button>
+				<div class="form-input">
+					<label for="categorie">Catégorie :</label>
+					<select name="categorie" id="selector-categories" required>
+						<!-- JS sets options here-->
+					</select>
+				</div>
+				
+				<button class='button-primary' type="submit" id="submitLogin">valider</button>
 
 			</form>
-			
-
-			
-	
+		
 			<div class="modale-gallery-actions">
-				<button class="button-primary trigger-modal-gallery-from-other">Valider</button> 
+				<button class="button-primary trigger-modal-gallery-from-other">Page précédente</button> 
 			</div>
 		</div>
 

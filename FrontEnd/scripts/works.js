@@ -4,7 +4,9 @@ const urlWorks = "http://localhost:5678/api/works";
 const urlCategories = "http://localhost:5678/api/categories";
 
 
-// FUNCTIONS 
+/////////////////
+/// FUNCTIONS ///
+/////////////////
 
 async function getData(url) {
     try {
@@ -87,7 +89,10 @@ function displayFilterButtons(allCategories, allWorks){
 };
 
 
-// INITIALISATION
+
+///////////////////
+/// PAGE INDEXE ///
+///////////////////
 
 Promise.all([getData(urlWorks), getData(urlCategories)])
     .then(([allWorks, allCategories]) => {
@@ -98,3 +103,26 @@ Promise.all([getData(urlWorks), getData(urlCategories)])
     .catch( error => {
         console.error("erreur lors de la réception des données : ", error);
     });
+
+
+///////////////////////////
+/// MODALE 2 : ADD WORK ///
+///////////////////////////
+
+getData(urlCategories)
+    .then( (data) => {
+        console.log('pour la modale 2');
+        console.log(data);
+
+        const selectorCategories = document.getElementById('selector-categories');
+        console.log('select categories', selectorCategories);
+        data.forEach((singleCategory) => {
+            console.log('single categorie', singleCategory.name);
+            const newOption = document.createElement('option');
+            newOption.setAttribute('value', singleCategory.name);
+            newOption.textContent = singleCategory.name;
+
+            selectorCategories.appendChild(newOption);
+        });
+    });
+    
