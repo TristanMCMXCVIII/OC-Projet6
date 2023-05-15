@@ -119,7 +119,7 @@ getData(urlCategories)
         data.forEach((singleCategory) => {
             console.log('single categorie', singleCategory.name);
             const newOption = document.createElement('option');
-            newOption.setAttribute('value', singleCategory.name);
+            newOption.setAttribute('value', singleCategory.id);
             newOption.textContent = singleCategory.name;
 
             selectorCategories.appendChild(newOption);
