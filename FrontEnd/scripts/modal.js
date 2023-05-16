@@ -83,6 +83,9 @@ async function deleteWork(id){
             if(response.ok){
                 const modalGalleryElementDeleted = document.getElementById(`modal-gallery-elt-${id}`);
                 modalGalleryElementDeleted.remove();
+
+                const workElementDeleted=document.getElementById(`work-elt-${id}`)
+                workElementDeleted.remove();
             }
         })
         .catch( (error) => {

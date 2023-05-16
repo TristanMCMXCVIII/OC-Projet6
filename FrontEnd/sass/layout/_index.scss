@@ -1,6 +1,61 @@
 //utilise le fichier style.css de ./assets (fichier existant) 
 // ici, seulement les modifications en plus 
 
+
+// NAVBAR 
+
 .trigger-index-to-login {
-    cursor: pointer;
+    display: none;
+
+    &.active{
+        display: block;
+    }
+}
+
+
+.trigger-logout {
+    display: none;
+
+    &.active{
+        display: block;
+    }
+}
+
+
+// FIGURE
+
+figure {
+    display: flex;
+    flex-direction: column;
+    
+    
+    width:100%;
+    height: 100%;
+    
+    
+    img{
+        width:100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+footer{
+    display: flex;
+    flex-direction: row;
+
+    justify-content: right;
+
+    width: 100%;
+
+    background-color: white;
+
+    & li {
+        font-family: "work Sans";
+        font-weight: 300;
+        font-size: 14;
+
+        color: black;
+    }
+
 }

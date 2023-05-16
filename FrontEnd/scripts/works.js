@@ -23,13 +23,11 @@ async function getData(url) {
 };
 
 
-function displayWorks(allWorks){
-    const worksElement = document.querySelector('#portfolio .gallery');
 
-    for (let work of allWorks){
-
-        const workElement = document.createElement('figure');
+function buildWork(work) {
+    const workElement = document.createElement('figure');
         workElement.setAttribute('category', work.category.name);
+        workElement.setAttribute('id', `work-elt-${work.id}`);
 
         const workImage = document.createElement('img');
         workImage.setAttribute('src', work.imageUrl);
@@ -42,9 +40,20 @@ function displayWorks(allWorks){
 
         workElement.appendChild(workDescription);
 
-        worksElement.appendChild(workElement);
+        return workElement;
+}
+
+
+
+function displayWorks(allWorks){
+    const worksElement = document.querySelector('#portfolio .gallery');
+
+    for (let work of allWorks){
+
+        worksElement.appendChild(buildWork(work));
     };
 };
+
 
 
 function removeWorks(){

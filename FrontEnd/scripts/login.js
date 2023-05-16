@@ -3,7 +3,27 @@
 const urlSubmitForm = "http://localhost:5678/api/users/login";
 
 
-// FUNCTIONS
+/////////////////
+/// FUNCTIONS ///
+/////////////////
+
+
+// alert-login-error / alert-login-success
+
+function triggerAlertLoginError(message) {
+    var alertLoginError = document.getElementById('alert-login-error');
+
+    alertLoginError.textContent = message;
+
+    alertLoginError.classList.add('active');
+
+    setTimeout( () => {
+        alertLoginError.classList.remove('active');
+    }, 3000)
+}
+    
+
+// POST Credentials
 
 async function postCredentials(email, password){
     try{
@@ -28,16 +48,22 @@ async function postCredentials(email, password){
             document.cookie = `jwt=${token}`;
         }
         else{
-            alert('Nom d\'utilisateur ou mot de passe incorrect');
+            
+            triggerAlertLoginError('Nom d\'utilisateur ou mot de passe incorrect');
         }
     }
     catch (error) {
         console.error('Erreur lors de la connexion à l\'API:', error);
         alert('Erreur lors de la connexion à l\'API');
+        triggerAlertLoginError('Erreur lors de la connexion à l\'API');
     }
 }
 
-// WORKFLOWS
+
+/////////////////
+/// WORKFLOWS ///
+/////////////////
+
 
 const submitElement = document.getElementById("login__form");
 
@@ -89,3 +115,8 @@ for (var i = 0; i < indexButtons.length; i++) {
         window.location.href = "index.html"; 
     })
 }
+
+
+
+
+

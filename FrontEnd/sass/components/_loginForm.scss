@@ -63,3 +63,39 @@
 .password-forgotten{
     text-decoration: underline;
 }
+
+
+/////////////
+/// ALERT ///
+/////////////
+
+.alert-error {
+    //visibility: hidden;
+    display: none;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    padding: 20px 0px;
+
+    border-radius: 10px;
+    background-color: #F8D7D9;
+    color: #8A3C43;
+
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    //transition: all 3000ms ease-in-out;
+
+    &.active {
+        //visibility: visible; //inv pour le test
+        display: flex;
+        opacity: 1;
+        transform: scaleY(1);
+        
+        transition: all 3000ms 100ms ease-in-out; // ne fonctionne pas !
+    }
+}

@@ -127,6 +127,8 @@ h3 {
 }
 
 .editionBanner {
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -254,6 +256,27 @@ h3 {
   text-decoration: underline;
 }
 
+.alert-error {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0px;
+  border-radius: 10px;
+  background-color: #F8D7D9;
+  color: #8A3C43;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.alert-error.active {
+  display: flex;
+  opacity: 1;
+  transform: scaleY(1);
+  transition: all 3000ms 100ms ease-in-out;
+}
+
 #modal-gallery {
   position: absolute;
   display: none;
@@ -302,12 +325,13 @@ h3 {
 #modal-gallery .grid-container .grid-item .modal-figure {
   display: flex;
   flex-direction: column;
-  object-fit: cover;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 #modal-gallery .grid-container .grid-item .modal-figure img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 #modal-gallery .modale-gallery-actions {
   display: flex;
@@ -455,7 +479,43 @@ h3 {
 }
 
 .trigger-index-to-login {
-  cursor: pointer;
+  display: none;
+}
+.trigger-index-to-login.active {
+  display: block;
+}
+
+.trigger-logout {
+  display: none;
+}
+.trigger-logout.active {
+  display: block;
+}
+
+figure {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  width: 100%;
+  background-color: white;
+}
+footer li {
+  font-family: "work Sans";
+  font-weight: 300;
+  font-size: 14;
+  color: black;
 }
 
 #login {

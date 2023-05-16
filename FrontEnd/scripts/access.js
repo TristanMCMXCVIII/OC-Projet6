@@ -39,3 +39,37 @@ for (var i = 0; i < loginButtons.length; i++) {
         window.location.href = "index2.html"; 
     })
 }
+
+
+const logoutButtons = document.getElementsByClassName('trigger-logout');
+
+
+function retirerCookie(nomCookie) {
+    var cookies = document.cookie.split(";");
+  
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i];
+      while (cookie.charAt(0) === " ") {
+        cookie = cookie.substring(1);
+      }
+  
+      if (cookie.indexOf(nomCookie + "=") === 0) {
+        var expirationDate = new Date();
+        expirationDate.setFullYear(expirationDate.getFullYear() - 1);
+        document.cookie = nomCookie + "=; expires=" + expirationDate.toUTCString() + "; path=/;";
+        break;
+      }
+    }
+  }
+
+  
+for (var i = 0; i < logoutButtons.length; i++) {
+    logoutButtons[i].addEventListener('click', (event) => {
+        event.preventDefault();
+        //document.cookie = `jwt=${null}`;
+       // document.cookie = 'jwt' + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        retirerCookie('jwt');
+        console.log('cookie retiré');
+        
+    })
+}
