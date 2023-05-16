@@ -4,9 +4,11 @@
 	<meta charset="UTF-8">
 	<title>Sophie Bluel - Architecte d'intérieur</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<link rel="stylesheet" href="./public/css/style.css"> <!-- css ajouté pour le projet, issu de fichiers scss -->
@@ -17,7 +19,7 @@
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
-			<li>projets</li>
+			<li class="trigger-login-to-index">projets</li>
 			<li>contact</li>
 			<li>login</li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
@@ -38,7 +40,7 @@
 					<label for="password">Mot de passe</label>
 					<input type="password" id="password" name="password" value="S0phie" required>
 				</div>
-				<button type="submit" id="submitLogin">Se connecter</button>
+				<button type="submit" class="button-primary2" id="submitLogin">Se connecter</button>
 			</form>
 	
 			<p class="password-forgotten">Mot de passe oublié</p>

@@ -105,12 +105,15 @@ nav ul {
 
 }
 nav li {
+	font: "Work Sans";
 	padding: 0 10px;
 	font-size: 1.2em;
+	font-weight: 400;
 }
 
 li:hover {
-	color: #B1663C;
+	font-weight: 600;
+	cursor: pointer;
 }
 #introduction {
 	display: flex;
@@ -205,4 +208,8 @@ footer nav ul {
 
 .hidden{
 	display : none;
+}
+
+li img {
+	height: 20px;
 }

@@ -71,62 +71,83 @@ document.querySelectorAll('.trigger-modal-add-from-other').forEach( trigger => {
 //////////// MODAL 1 : GALLERY ////////////
 ///////////////////////////////////////////
 
+async function deleteWork(id){
+    fetch(`http://localhost:5678/api/works/${id}`, { 
+            method: 'DELETE',
+            headers: {
+                Authorization: "Bearer " + getCookie('jwt') 
+            }
+        })
+        .then( (response) => {
+            console.log('reponse de delete', response);
+            if(response.ok){
+                const modalGalleryElementDeleted = document.getElementById(`modal-gallery-elt-${id}`);
+                modalGalleryElementDeleted.remove();
+            }
+        })
+        .catch( (error) => {
+            console.error(error);
+        });
+};
 
 
-function displayWorksInModal(allWorks) {
+
+function modalGalleryBuildElement(work){
+    // Composition 
+    const gridItemElement = document.createElement('div');
+    gridItemElement.classList.add('grid-item');
+    gridItemElement.setAttribute('id', `modal-gallery-elt-${work.id}`);// pour la suppression
+
+        const figureActionElement = document.createElement('div');
+        figureActionElement.classList.add('figure-action');
+
+            const figureActionButtonMoveElement = document.createElement('button');
+            figureActionButtonMoveElement.classList.add('figure-action__button');
+            figureActionButtonMoveElement.innerHTML = `<i class="fa-solid fa-arrows-up-down-left-right fa-xs" style="color: #ffffff;"></i>`;
+            figureActionElement.appendChild(figureActionButtonMoveElement);
+
+            const figureActionButtonTrashElement = document.createElement('button');
+            figureActionButtonTrashElement.classList.add('figure-action__button');
+            figureActionButtonTrashElement.innerHTML = `<i class="fa-regular fa-trash-can fa-xs" style="color: #ffffff;"></i>`;
+            figureActionElement.appendChild(figureActionButtonTrashElement);
+
+        gridItemElement.appendChild(figureActionElement);
+
+        const modalFigureElement = document.createElement('figure');
+        modalFigureElement.classList.add('modal-figure');
+        modalFigureElement.innerHTML = `
+            <img src="${work.imageUrl}" alt="${work.title}">
+            <button class="edit-work__button">éditer</button>`;
+        gridItemElement.appendChild(modalFigureElement);
+
+    // Button
+    figureActionButtonTrashElement.addEventListener('click', (event) => {
+        event.preventDefault();
+        deleteWork(work.id);
+    });
+    
+    // Return 
+    return gridItemElement;
+}
+
+
+
+function modalGalleryComposition(allWorks) {
     const gridContainerElement = document.querySelector('#modal-gallery .grid-container');
 
     allWorks.forEach( (work) => {
-        console.log(work);
-        const gridItemElement = document.createElement('div');
-        gridItemElement.classList.add('grid-item');
 
-            const figureActionElement = document.createElement('div');
-            figureActionElement.classList.add('figure-action');
-
-                const figureActionButtonMoveElement = document.createElement('button');
-                figureActionButtonMoveElement.classList.add('figure-action__button');
-                figureActionButtonMoveElement.innerHTML = `<i class="fa-solid fa-arrows-up-down-left-right fa-xs" style="color: #ffffff;"></i>`;
-                figureActionElement.appendChild(figureActionButtonMoveElement);
-
-                const figureActionButtonTrashElement = document.createElement('button');
-                figureActionButtonTrashElement.classList.add('figure-action__button');
-                figureActionButtonTrashElement.innerHTML = `<i class="fa-regular fa-trash-can fa-xs" style="color: #ffffff;"></i>`;
-                figureActionElement.appendChild(figureActionButtonTrashElement);
-
-            gridItemElement.appendChild(figureActionElement);
-
-            const modalFigureElement = document.createElement('figure');
-            modalFigureElement.classList.add('modal-figure');
-            modalFigureElement.innerHTML = `
-                <img src="${work.imageUrl}" alt="${work.title}">
-				<button class="edit-work__button">éditer</button>`;
-            gridItemElement.appendChild(modalFigureElement);
-        
-        gridContainerElement.appendChild(gridItemElement);
-
-        // Buttons 
-
-        figureActionButtonTrashElement.addEventListener('click', (event) => {
-            event.preventDefault();
-            console.log(work.id);
-            console.log(getCookie('jwt')); 
-            fetch(`http://localhost:5678/api/works/${work.id}`, { 
-                method: 'DELETE',
-                headers: {
-                    Authorization: "Bearer " + getCookie('jwt') 
-                }
-            });
-            //rappel /api/work pour les 2 grids
-        });
-
+        const gridItemElementx = modalGalleryBuildElement(work);
+        gridContainerElement.appendChild(gridItemElementx);
     });
 };
+
+
 
 getData(urlWorks)
     .then( (allWorks) => {
         console.log('frabrication des éléments de la modale avec ', allWorks);
-        displayWorksInModal(allWorks);
+        modalGalleryComposition(allWorks);
     });
 
 
@@ -141,6 +162,7 @@ const inputAddWork = document.getElementById('picture-uploader__input--add-work'
 const uploaderVisualisation = document.querySelector('#form-add-work .picture-uploader__visualisation');
 const uploaderDropAnImage = document.querySelector('#form-add-work .picture-uploader__drop-an-image');
 
+const deleteLoadedImageElement = document.getElementById('remove-uploaded-image');
 
 const formData = new FormData();
 
@@ -153,28 +175,35 @@ buttonAddWork.addEventListener('click', (event) => {
 });
 
 
+const imageUploaded = document.getElementById('uploaded-image');
+
 inputAddWork.addEventListener('change', (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     const file = event.target.files[0];
     console.log(file);
-
-    formData.append('image', file); // append formData
-
+/*
+    formData.append('image', file); // append formData formData.append('image', inputAddWork.files[0]; 
+*/
     var reader = new FileReader();
     reader.onload = (e) => {
         const imageUrl = e.target.result;
 
-        const image = new Image();
-        image.classList.add('uploaded-image');
-        uploaderDropAnImage.classList.add('desactive');
-        image.onload = () => {
-            uploaderVisualisation.innerHTML = '';
-            uploaderVisualisation.appendChild(image);
-        };
+        //const image = new Image();//
+       // image.classList.add('uploaded-image');//
 
-        image.src = imageUrl;
+        
+
+        uploaderDropAnImage.classList.add('desactive');
+        deleteLoadedImageElement.classList.add('active');
+        /*imageUploaded.onload = () => {
+            uploaderVisualisation.innerHTML = '';//vide avanr de remplir
+            uploaderVisualisation.appendChild(imageUploaded);
+        };*/
+
+        imageUploaded.src = imageUrl;
+        imageUploaded.alt = 'uploaded image override';
     };
 
     reader.readAsDataURL(file);
@@ -183,12 +212,23 @@ inputAddWork.addEventListener('change', (event) => {
 });
 
 
+
+deleteLoadedImageElement.addEventListener('click', (event) => {
+    event.preventDefault();
+    imageUploaded.src = '';
+    imageUploaded.alt = '';
+    uploaderDropAnImage.classList.remove('desactive');
+    deleteLoadedImageElement.classList.remove('active');
+})
+
+
 // valider le formulaire :
 
 
 document.getElementById('form-add-work').addEventListener('submit', (event) => {
-    event.preventDefault(); //empeche get plus redirection d'un form
+    event.preventDefault();
 
+    formData.append('image', inputAddWork.files[0]); 
     formData.append('title', document.getElementById('input-title').value);
     formData.append('category', document.getElementById('selector-categories').value);
 
@@ -213,4 +253,35 @@ document.getElementById('form-add-work').addEventListener('submit', (event) => {
             console.error('Une erreur s\'est produite lors de l\'envoi de l\'image', error);
         })
 });
+
+
+// Bouton pour valider le formulaire ACTIF ou innactif 
+
+const addWorkElementImage = document.getElementById('uploaded-image');
+const addWorkElementInput1 = document.getElementById('input-title');
+const addWorkElementInput2 = document.getElementById('selector-categories');
+
+const addWorkSubmitButton = document.getElementById('submit-new-work');
+
+console.log('addWorkElementImage : ', !addWorkElementImage.src==='')
+
+function toggleButtonStateAddWork(){
+    if(addWorkElementInput1.value.trim() ==='' || addWorkElementInput1.value.trim() ==='' || addWorkElementImage.src===''){
+        addWorkSubmitButton.classList.remove('unlocked');
+        console.log('DISABLED', addWorkElementImage.src);
+    }
+    else{
+        addWorkSubmitButton.classList.add('unlocked');
+        console.log('UNLOCKED', addWorkElementImage.src);
+    }
+};
+
+addWorkElementImage.addEventListener('change', toggleButtonStateAddWork);
+addWorkElementInput1.addEventListener('input', toggleButtonStateAddWork);
+addWorkElementInput2.addEventListener('input', toggleButtonStateAddWork);
+
+
+
+
+
 

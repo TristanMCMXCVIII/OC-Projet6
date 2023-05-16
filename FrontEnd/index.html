@@ -4,10 +4,13 @@
 	<meta charset="UTF-8">
 	<title>Sophie Bluel - Architecte d'intérieur</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<meta name="description" content="">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	
+<meta name="description" content="">
 
 	<script src="https://kit.fontawesome.com/59e5c1453c.js" crossorigin="anonymous"></script>
 
@@ -122,14 +125,18 @@
 
 		<div class="modal" id="modal-add">
 			<button class="modal-close trigger-modal-close"><i class="fa-solid fa-x"></i></button>
+			<button class="button-return-to-gallery trigger-modal-gallery-from-other"><i class="fa-solid fa-arrow-left"></i></button>
 			<h3>Ajout photo</h3>
 			
 			<form id="form-add-work">
 
 				<div class="picture-uploader">
-		
+					<div id="remove-uploaded-image">
+						<i class="fa-solid fa-arrows-rotate"></i>
+					</div>
+					
 					<div class="picture-uploader__visualisation">
-						<!-- JS display image uploaded -->
+						<img id='uploaded-image' src='' alt=''><!-- JS override here-->
 					</div>
 					<div class="picture-uploader__drop-an-image">
 						<img src="assets/icons/insert-picture.svg" alt="logo image">
@@ -150,14 +157,12 @@
 						<!-- JS sets options here-->
 					</select>
 				</div>
+
+				<div class="separator"></div>
 				
-				<button class='button-primary' type="submit" id="submit-new-work">valider</button>
+				<button class='button-primary2' type="submit" id="submit-new-work">valider</button>
 
 			</form>
-		
-			<div class="modale-gallery-actions">
-				<button class="button-primary trigger-modal-gallery-from-other">Page précédente</button> 
-			</div>
 		</div>
 
 	</div>

@@ -43,7 +43,28 @@
 
     width: 100%;
 
-    row-gap: 20px;
+    row-gap: 30px;
+}
+
+
+
+.button-return-to-gallery{
+    position: absolute;
+
+    top: 10px;
+    left: 10px;
+
+    font-size: 18px;
+    padding: 8px 10px;
+    
+    background-color: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    &:hover {
+        color: $secondary;
+    }
 }
 
 
@@ -55,6 +76,8 @@
 
 
 .picture-uploader {
+    position: relative;
+
     display: flex;
     flex-direction: column;
 
@@ -65,7 +88,7 @@
     background-color: #E8F1F6;
 };
 
-.uploaded-image {
+#uploaded-image {
     height: 170px;
     object-fit: contain;
 };
@@ -112,6 +135,22 @@
         display : none;
     }
 };
+
+#remove-uploaded-image {
+    position : absolute;
+
+    display: none;
+    top: 10px;
+    right: 10px;
+
+    &:hover {
+        color: $secondary;
+    }
+
+    &.active {
+        display: block;
+    }
+}
 
 
 

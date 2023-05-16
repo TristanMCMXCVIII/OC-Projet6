@@ -12,6 +12,7 @@ h3 {
 .separator {
   width: 70%;
   height: 1px;
+  margin-top: 20px;
   background-color: #B3B3B3;
 }
 
@@ -31,6 +32,37 @@ h3 {
   border-radius: 60px;
 }
 .button-primary:hover {
+  background-color: #298876;
+}
+.button-primary.disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+.button-primary2 {
+  align-self: center;
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: white;
+  background-color: #A7A7A7;
+  height: 35px;
+  width: 240px;
+  padding: 0px 30px 0px 30px;
+  text-align: center;
+  border: none;
+  border-radius: 60px;
+  cursor: not-allowed;
+}
+.button-primary2:hover {
+  background-color: #c1c1c1;
+}
+.button-primary2.unlocked {
+  background-color: #1D6154;
+  cursor: pointer;
+}
+.button-primary2.unlocked:hover {
   background-color: #298876;
 }
 
@@ -91,7 +123,7 @@ h3 {
   cursor: pointer;
 }
 .modal-close:hover {
-  color: red;
+  color: #B1663C;
 }
 
 .editionBanner {
@@ -171,6 +203,33 @@ h3 {
   flex-direction: column;
   width: 100%;
   row-gap: 20px;
+  /*
+      &> button{
+          align-self: center;
+
+          font-family: 'Syne';
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 17px;
+
+          color: white;
+          background-color: $primary;
+
+          height: 35px;
+          width: 180px;
+
+          padding: 0px 30px 0px 30px;
+          margin: 10px 0px 40px 0px;
+
+          text-align: center;
+
+          border: none;
+          border-radius: 60px;
+
+          &:hover{
+              background-color: lighten($primary, 10%);
+          }
+      }*/
 }
 #login__form > div {
   display: flex;
@@ -189,25 +248,6 @@ h3 {
 }
 #login__form > div > input:focus {
   border: none;
-}
-#login__form > button {
-  align-self: center;
-  font-family: "Syne";
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
-  color: white;
-  background-color: #1D6154;
-  height: 35px;
-  width: 180px;
-  padding: 0px 30px 0px 30px;
-  margin: 10px 0px 40px 0px;
-  text-align: center;
-  border: none;
-  border-radius: 60px;
-}
-#login__form > button:hover {
-  background-color: #298876;
 }
 
 .password-forgotten {
@@ -311,10 +351,25 @@ h3 {
   min-width: 280px;
   max-width: 450px;
   width: 100%;
-  row-gap: 20px;
+  row-gap: 30px;
+}
+
+.button-return-to-gallery {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 18px;
+  padding: 8px 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.button-return-to-gallery:hover {
+  color: #B1663C;
 }
 
 .picture-uploader {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -322,7 +377,7 @@ h3 {
   background-color: #E8F1F6;
 }
 
-.uploaded-image {
+#uploaded-image {
   height: 170px;
   object-fit: contain;
 }
@@ -357,6 +412,19 @@ h3 {
 }
 .picture-uploader__drop-an-image.desactive {
   display: none;
+}
+
+#remove-uploaded-image {
+  position: absolute;
+  display: none;
+  top: 10px;
+  right: 10px;
+}
+#remove-uploaded-image:hover {
+  color: #B1663C;
+}
+#remove-uploaded-image.active {
+  display: block;
 }
 
 .form-input {

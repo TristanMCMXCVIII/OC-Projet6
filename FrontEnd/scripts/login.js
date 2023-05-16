@@ -51,3 +51,41 @@ submitElement.addEventListener('submit', (event) => {
 
     postCredentials(email, password);
 });
+
+
+
+
+// pour valider le login 
+
+
+const loginElementInput1 = document.getElementById('email');
+const loginElementInput2 = document.getElementById('password');
+
+const loginSubmitButton = document.getElementById('submitLogin');
+
+function toggleButtonStateLogin(){
+    if(loginElementInput1.value.trim() ==='' || loginElementInput1.value.trim() ===''){
+        loginSubmitButton.classList.remove('unlocked');
+    }
+    else{
+        loginSubmitButton.classList.add('unlocked');
+    }
+};
+
+toggleButtonStateLogin(); // on page load
+loginElementInput1.addEventListener('input', toggleButtonStateLogin);
+loginElementInput2.addEventListener('input', toggleButtonStateLogin);
+
+
+
+// Return to "projects"
+
+
+const indexButtons = document.getElementsByClassName('trigger-login-to-index');
+
+for (var i = 0; i < indexButtons.length; i++) {
+    indexButtons[i].addEventListener('click', (event) => {
+        event.preventDefault();
+        window.location.href = "index.html"; 
+    })
+}

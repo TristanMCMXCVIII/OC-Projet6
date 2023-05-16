@@ -22,6 +22,48 @@
     &:hover{
         background-color: lighten($primary, 10%);
     }
+
+    &.disabled {
+        background-color: grey;
+        cursor: not-allowed;
+    }
+}
+
+.button-primary2 {
+    align-self: center;
+
+    font-family: 'Syne';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: white;
+    background-color: #A7A7A7;
+
+    height: 35px;
+    width: 240px;
+
+    padding: 0px 30px 0px 30px;
+
+    text-align: center;
+
+    border: none;
+    border-radius: 60px;
+
+    cursor: not-allowed;
+
+    &:hover{
+        background-color: lighten(#A7A7A7, 10%);
+    }
+
+    &.unlocked {
+        background-color: $primary;
+        cursor: pointer;
+
+        &:hover{
+            background-color: lighten($primary, 10%);
+        }
+    }
 }
 
 .button-delete {
@@ -102,6 +144,6 @@
     cursor: pointer;
 
     &:hover {
-        color: red;
+        color: $secondary;
     }
 }
