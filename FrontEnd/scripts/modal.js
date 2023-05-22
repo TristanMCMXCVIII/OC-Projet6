@@ -177,7 +177,7 @@ buttonAddWork.addEventListener('click', (event) => {
     inputAddWork.click();
 });
 
-
+//probleme =================================== img null ne fait rien
 const imageUploaded = document.getElementById('uploaded-image');
 
 inputAddWork.addEventListener('change', (event) => {
@@ -186,6 +186,7 @@ inputAddWork.addEventListener('change', (event) => {
 
     const file = event.target.files[0];
     console.log(file);
+    console.log('HELLO');
 /*
     formData.append('image', file); // append formData formData.append('image', inputAddWork.files[0]; 
 */
@@ -220,6 +221,7 @@ deleteLoadedImageElement.addEventListener('click', (event) => {
     event.preventDefault();
     imageUploaded.src = '';
     imageUploaded.alt = '';
+   // imageUploaded = null;
     uploaderDropAnImage.classList.remove('desactive');
     deleteLoadedImageElement.classList.remove('active');
 })
@@ -269,13 +271,13 @@ const addWorkSubmitButton = document.getElementById('submit-new-work');
 console.log('addWorkElementImage : ', !addWorkElementImage.src==='')
 
 function toggleButtonStateAddWork(){
-    if(addWorkElementInput1.value.trim() ==='' || addWorkElementInput1.value.trim() ==='' || addWorkElementImage.src===''){
+    if(addWorkElementInput1.value.trim() ==='' || addWorkElementInput1.value.trim() ==='' || addWorkElementImage===null){  
         addWorkSubmitButton.classList.remove('unlocked');
-        console.log('DISABLED', addWorkElementImage.src);
+        console.log('DISABLED', addWorkElementImage);
     }
     else{
         addWorkSubmitButton.classList.add('unlocked');
-        console.log('UNLOCKED', addWorkElementImage.src);
+        console.log('UNLOCKED', addWorkElementImage);
     }
 };
 

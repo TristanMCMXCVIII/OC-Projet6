@@ -93,9 +93,9 @@
     &.active {
         //visibility: visible; //inv pour le test
         display: flex;
+
         opacity: 1;
         transform: scaleY(1);
-        
-        transition: all 3000ms 100ms ease-in-out; // ne fonctionne pas !
+        transition: all 3000ms 500ms ease-in-out; // ne fonctionne pas !
     }
 }

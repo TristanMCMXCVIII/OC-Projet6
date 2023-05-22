@@ -66,8 +66,8 @@ function retirerCookie(nomCookie) {
 for (var i = 0; i < logoutButtons.length; i++) {
     logoutButtons[i].addEventListener('click', (event) => {
         event.preventDefault();
-        //document.cookie = `jwt=${null}`;
-       // document.cookie = 'jwt' + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = `jwt=${null}`;
+        document.cookie = 'jwt' + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         retirerCookie('jwt');
         console.log('cookie retiré');
         
