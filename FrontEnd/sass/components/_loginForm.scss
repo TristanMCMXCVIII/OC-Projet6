@@ -70,8 +70,7 @@
 /////////////
 
 .alert-error {
-    //visibility: hidden;
-    display: none;
+    display: flex;
 
     flex-direction: column;
 
@@ -88,14 +87,10 @@
     opacity: 0;
     transform: scaleY(0);
     transform-origin: top;
-    //transition: all 3000ms ease-in-out;
+    transition: all 250ms ease-in-out;
 
     &.active {
-        //visibility: visible; //inv pour le test
-        display: flex;
-
         opacity: 1;
         transform: scaleY(1);
-        transition: all 3000ms 500ms ease-in-out; // ne fonctionne pas !
     }
 }

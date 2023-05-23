@@ -3,6 +3,7 @@
 const urlSubmitForm = "http://localhost:5678/api/users/login";
 
 
+
 /////////////////
 /// FUNCTIONS ///
 /////////////////
@@ -46,6 +47,8 @@ async function postCredentials(email, password){
             window.location.href = "index.html"; // redirection
 
             document.cookie = `jwt=${token}`;
+
+            
         }
         else{
             

@@ -14,9 +14,23 @@ function getCookie(name) {
   
   if (jwt != null) { 
       banner.style.display = 'flex';
+
+      Array.from(document.getElementsByClassName('trigger-logout')).forEach(trigger => {
+        trigger.classList.add('active');
+      });
+      Array.from(document.getElementsByClassName('trigger-index-to-login')).forEach(trigger => {
+          trigger.classList.remove('active');
+      });
   } else {
       banner.style.display = 'none';
-  }
+
+      Array.from(document.getElementsByClassName('trigger-logout')).forEach(trigger => {
+        trigger.classList.remove('active');
+      });
+      Array.from(document.getElementsByClassName('trigger-index-to-login')).forEach(trigger => {
+          trigger.classList.add('active');
+      });
+  } 
 
 
 
@@ -56,7 +70,7 @@ function retirerCookie(nomCookie) {
       if (cookie.indexOf(nomCookie + "=") === 0) {
         var expirationDate = new Date();
         expirationDate.setFullYear(expirationDate.getFullYear() - 1);
-        document.cookie = nomCookie + "=; expires=" + expirationDate.toUTCString() + "; path=/;";
+        document.cookie = nomCookie + "=; expires=" + expirationDate.toUTCString() + ";"/*+ "; path=/;"*/;
         break;
       }
     }
@@ -70,6 +84,6 @@ for (var i = 0; i < logoutButtons.length; i++) {
         document.cookie = 'jwt' + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         retirerCookie('jwt');
         console.log('cookie retiré');
-        
+        location.reload();
     })
 }

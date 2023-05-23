@@ -169,7 +169,6 @@ const deleteLoadedImageElement = document.getElementById('remove-uploaded-image'
 
 const formData = new FormData();
 
-
 buttonAddWork.addEventListener('click', (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -181,47 +180,34 @@ buttonAddWork.addEventListener('click', (event) => {
 const imageUploaded = document.getElementById('uploaded-image');
 
 inputAddWork.addEventListener('change', (event) => {
+    console.log('INPUT.ADD.WORK CHANGED');
     event.preventDefault();
     event.stopPropagation();
 
     const file = event.target.files[0];
-    console.log(file);
-    console.log('HELLO');
-/*
-    formData.append('image', file); // append formData formData.append('image', inputAddWork.files[0]; 
-*/
+
     var reader = new FileReader();
-    reader.onload = (e) => {
-        const imageUrl = e.target.result;
-
-        //const image = new Image();//
-       // image.classList.add('uploaded-image');//
-
-        
+    reader.onload = (e) => { // reader.onload = ce n'est pas une méthode mais un attribut
+        const imageUrl = e.target.result; //"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAA
 
         uploaderDropAnImage.classList.add('desactive');
         deleteLoadedImageElement.classList.add('active');
-        /*imageUploaded.onload = () => {
-            uploaderVisualisation.innerHTML = '';//vide avanr de remplir
-            uploaderVisualisation.appendChild(imageUploaded);
-        };*/
 
         imageUploaded.src = imageUrl;
         imageUploaded.alt = 'uploaded image override';
     };
 
+    
     reader.readAsDataURL(file);
 
-    console.log('done');
+    toggleButtonStateAddWork();
 });
-
 
 
 deleteLoadedImageElement.addEventListener('click', (event) => {
     event.preventDefault();
     imageUploaded.src = '';
     imageUploaded.alt = '';
-   // imageUploaded = null;
     uploaderDropAnImage.classList.remove('desactive');
     deleteLoadedImageElement.classList.remove('active');
 })
@@ -231,18 +217,15 @@ deleteLoadedImageElement.addEventListener('click', (event) => {
 
 
 document.getElementById('form-add-work').addEventListener('submit', (event) => {
+    console.log('SUBMIT WORK BTN ENCLENCHÉ');
     event.preventDefault();
 
     formData.append('image', inputAddWork.files[0]); 
     formData.append('title', document.getElementById('input-title').value);
     formData.append('category', document.getElementById('selector-categories').value);
-
- 
     for (const value of formData.values()) {
-        console.log(value);
+        console.log('envie du formumaire -> data : ', value);
     };
-
-    console.log(getCookie('jwt'));
 
     fetch(urlWorks,{
         method: 'POST',
@@ -252,7 +235,24 @@ document.getElementById('form-add-work').addEventListener('submit', (event) => {
         body: formData
     })
         .then( response => {
-            console.log('Nouveau projet envoyé avec succès', response);
+            
+
+           // console.log('Nouveau projet envoyé avec succès part 1', response);//objet response 
+           // console.log(response.json());// promise {pending}
+            response.json();
+        })
+        .then( work => {
+
+            console.log('Nouveau projet envoyé avec succès part 2', work); //UNDEFINED !!!!ERR
+
+            hideModals();
+            showModal(document.querySelector('#modal-gallery'));
+
+            //ajouter l'élément à la modale gallery : 
+          //  document.querySelector('#modal-gallery .grid-container').appendChild(modalGalleryBuildElement(work));
+
+            //ajouter l'élément à la gallery de index :
+          //  document.querySelector('#portfolio .gallery').appendChild(buildWork(work));            
         })
         .catch( error => {
             console.error('Une erreur s\'est produite lors de l\'envoi de l\'image', error);
@@ -268,10 +268,11 @@ const addWorkElementInput2 = document.getElementById('selector-categories');
 
 const addWorkSubmitButton = document.getElementById('submit-new-work');
 
-console.log('addWorkElementImage : ', !addWorkElementImage.src==='')
-
 function toggleButtonStateAddWork(){
-    if(addWorkElementInput1.value.trim() ==='' || addWorkElementInput1.value.trim() ==='' || addWorkElementImage===null){  
+    console.log('INPUT.ADD.WORK CHANGED2');// qu'est ce qui change l'image
+    console.log(addWorkElementInput1.value.trim(), addWorkElementInput1.value.trim(), addWorkElementImage.alt)
+
+    if(addWorkElementInput1.value.trim() ==='' || addWorkElementInput1.value.trim() ==='' || addWorkElementImage.alt===''){  
         addWorkSubmitButton.classList.remove('unlocked');
         console.log('DISABLED', addWorkElementImage);
     }
@@ -281,7 +282,6 @@ function toggleButtonStateAddWork(){
     }
 };
 
-addWorkElementImage.addEventListener('change', toggleButtonStateAddWork);
 addWorkElementInput1.addEventListener('input', toggleButtonStateAddWork);
 addWorkElementInput2.addEventListener('input', toggleButtonStateAddWork);
 
