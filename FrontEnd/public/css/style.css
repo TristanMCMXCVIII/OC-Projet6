@@ -460,7 +460,7 @@ h3 {
 }
 
 .alert-error {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -475,6 +475,28 @@ h3 {
   transition: all 250ms ease-in-out;
 }
 .alert-error.active {
+  display: flex;
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.alert-success {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0px;
+  border-radius: 10px;
+  background-color: #D4EDD9;
+  color: #628F69;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: all 250ms ease-in-out;
+}
+.alert-success.active {
+  display: flex;
   opacity: 1;
   transform: scaleY(1);
 }

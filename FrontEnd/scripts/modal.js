@@ -154,10 +154,18 @@ getData(urlWorks)
     });
 
 
+////////////////////////////////////////////
 
 ////////////////////////////////////////////
 //////////// MODAL 2 : ADD WORK ////////////
 ////////////////////////////////////////////
+
+////////////////////////////////////////////
+
+
+///////////////////////////////
+// INITIALISATION des variables 
+///////////////////////////////
 
 const buttonAddWork = document.getElementById('picture-uploader__button--add-work');
 const inputAddWork = document.getElementById('picture-uploader__input--add-work');
@@ -169,6 +177,11 @@ const deleteLoadedImageElement = document.getElementById('remove-uploaded-image'
 
 const formData = new FormData();
 
+
+/////////////////////////////////////////////////////
+// EVENTMENT : clique PHYSIQUE pour ajouter une image 
+/////////////////////////////////////////////////////
+
 buttonAddWork.addEventListener('click', (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -177,18 +190,21 @@ buttonAddWork.addEventListener('click', (event) => {
 });
 
 
+/////////////////////////////////////////////////////
+// EVENEMENT : clique VIRTUEL pour ajouter une image
+/////////////////////////////////////////////////////
+
 const imageUploaded = document.getElementById('uploaded-image');
 
 inputAddWork.addEventListener('change', (event) => {
-    console.log('INPUT.ADD.WORK CHANGED');
     event.preventDefault();
     event.stopPropagation();
 
     const file = event.target.files[0];
 
     var reader = new FileReader();
-    reader.onload = (e) => { // reader.onload = ce n'est pas une méthode mais un attribut
-        const imageUrl = e.target.result; //"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAA
+    reader.onload = (e) => { 
+        const imageUrl = e.target.result; 
 
         uploaderDropAnImage.classList.add('desactive');
         deleteLoadedImageElement.classList.add('active');
@@ -200,11 +216,13 @@ inputAddWork.addEventListener('change', (event) => {
     };
 
     
-    reader.readAsDataURL(file);
-
-    
+    reader.readAsDataURL(file);    
 });
 
+
+//////////////////////////////////////////
+// EVENEMENT : clique pour rejeter l'image
+//////////////////////////////////////////
 
 deleteLoadedImageElement.addEventListener('click', (event) => {
     event.preventDefault();
@@ -214,12 +232,12 @@ deleteLoadedImageElement.addEventListener('click', (event) => {
     deleteLoadedImageElement.classList.remove('active');
 
     toggleButtonStateAddWork();
-
 })
 
 
-// valider le formulaire :
-
+///////////////////////////////////////
+// EVENEMENT : soumission du formulaire
+///////////////////////////////////////
 
 document.getElementById('form-add-work').addEventListener('submit', (event) => {
     console.log('SUBMIT WORK BTN ENCLENCHÉ');
@@ -244,22 +262,18 @@ document.getElementById('form-add-work').addEventListener('submit', (event) => {
         })
         .then( work => {
 
-            console.log('Nouveau projet envoyé avec succès part 2', work); //UNDEFINED !!!!ERR
-
             hideModals();
             showModal(document.querySelector('#modal-gallery'));
-
-            console.log(work);
-
-            //ajouter l'élément à la modale gallery : 
+           
             document.querySelector('#modal-gallery .grid-container').appendChild(modalGalleryBuildElement(work));
-
-            console.log(work);
-
-            //ajouter l'élément à la gallery de index :
             document.querySelector('#portfolio .gallery').appendChild(buildWork_withoutCategory(work));  
             
-           resetForm();
+            document.getElementById('alert-submit-work-success').classList.add('active');
+            setTimeout( () => {
+                document.getElementById('alert-submit-work-success').classList.remove('active');
+            }, 2000)
+
+            resetForm();
         })
         .catch( error => {
             console.error('Une erreur s\'est produite lors de l\'envoi de l\'image', error);
@@ -268,7 +282,9 @@ document.getElementById('form-add-work').addEventListener('submit', (event) => {
 });
 
 
-// Bouton pour valider le formulaire ACTIF ou innactif 
+///////////////////////////////////////////////////
+// FONCTION : rendre le formulaire cliquable ou non
+///////////////////////////////////////////////////
 
 const addWorkElementImage = document.getElementById('uploaded-image');  // => inputAddWork
 const addWorkElementInput1 = document.getElementById('input-title');
@@ -277,30 +293,27 @@ const addWorkElementInput2 = document.getElementById('selector-categories');
 const addWorkSubmitButton = document.getElementById('submit-new-work');
 
 function toggleButtonStateAddWork(){
-    console.log('INPUT.ADD.WORK CHANGED2');// qu'est ce qui change l'image
-    console.log(addWorkElementInput1.value.trim(), addWorkElementInput2.value.trim(), addWorkElementImage.alt==='')
 
     if(addWorkElementInput1.value.trim() ==='' || addWorkElementInput2.value.trim() ==='' || addWorkElementImage.alt===''){  
         addWorkSubmitButton.classList.remove('unlocked');
-        console.log('DISABLED', addWorkElementImage);
     }
     else{
         addWorkSubmitButton.classList.add('unlocked');
-        console.log('UNLOCKED', addWorkElementImage);
     }
 };
+
+
+////////////////////////////////////////////
+// EVENEMENTs : les input changent de valeur
+////////////////////////////////////////////
 
 addWorkElementInput1.addEventListener('input', toggleButtonStateAddWork);
 addWorkElementInput2.addEventListener('input', toggleButtonStateAddWork);
 
 
-
-
-
-
-// ALERT
-
-// alert-login-error / alert-login-success
+/////////////////////////////////
+// FUNCTION : trigger alert error 
+/////////////////////////////////
 
 function triggerAlertAddWorkError(message) {
     var alertLoginError = document.getElementById('alert-submit-work-error');
@@ -315,13 +328,9 @@ function triggerAlertAddWorkError(message) {
 }
 
 
-
-
-
-
-
-
-//reset form
+////////////////////////
+// FUNCTION : reset form
+////////////////////////
 
 function resetForm() {
     document.getElementById("form-add-work").reset();
@@ -331,5 +340,14 @@ function resetForm() {
     uploaderDropAnImage.classList.remove('desactive');
     deleteLoadedImageElement.classList.remove('active');
 
+    formData.delete('image');
+    formData.delete('title');
+    formData.delete('category');
+
     toggleButtonStateAddWork();
   }
+
+
+
+
+

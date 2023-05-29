@@ -4,7 +4,7 @@
 /////////////
 
 .alert-error {
-    display: flex;
+    display: none; //ou flex directement
 
     flex-direction: column;
 
@@ -24,6 +24,35 @@
     transition: all 250ms ease-in-out;
 
     &.active {
+        display: flex;
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+
+.alert-success {
+    display: none; //avec cette méthode les animations ne fonctionnent plus
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    padding: 20px 0px;
+
+    border-radius: 10px;
+    background-color: #D4EDD9;
+    color: #628F69;
+
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all 250ms ease-in-out;
+
+    &.active {
+        display: flex;
         opacity: 1;
         transform: scaleY(1);
     }
