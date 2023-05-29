@@ -43,6 +43,24 @@ function buildWork(work) {
         return workElement;
 }
 
+function buildWork_withoutCategory(work) { //sinon, signifier une categorie avec sont id
+    const workElement = document.createElement('figure');
+        //workElement.setAttribute('category', work.category.name);
+        workElement.setAttribute('id', `work-elt-${work.id}`);
+
+        const workImage = document.createElement('img');
+        workImage.setAttribute('src', work.imageUrl);
+        workImage.setAttribute('alt', work.title);
+
+        workElement.appendChild(workImage);
+
+        const workDescription = document.createElement('figcaption');
+        workDescription.textContent = work.title;
+
+        workElement.appendChild(workDescription);
+
+        return workElement;
+}
 
 
 function displayWorks(allWorks){

@@ -176,7 +176,7 @@ buttonAddWork.addEventListener('click', (event) => {
     inputAddWork.click();
 });
 
-//probleme =================================== img null ne fait rien
+
 const imageUploaded = document.getElementById('uploaded-image');
 
 inputAddWork.addEventListener('change', (event) => {
@@ -195,12 +195,14 @@ inputAddWork.addEventListener('change', (event) => {
 
         imageUploaded.src = imageUrl;
         imageUploaded.alt = 'uploaded image override';
+
+        toggleButtonStateAddWork();
     };
 
     
     reader.readAsDataURL(file);
 
-    toggleButtonStateAddWork();
+    
 });
 
 
@@ -210,6 +212,9 @@ deleteLoadedImageElement.addEventListener('click', (event) => {
     imageUploaded.alt = '';
     uploaderDropAnImage.classList.remove('desactive');
     deleteLoadedImageElement.classList.remove('active');
+
+    toggleButtonStateAddWork();
+
 })
 
 
@@ -235,11 +240,7 @@ document.getElementById('form-add-work').addEventListener('submit', (event) => {
         body: formData
     })
         .then( response => {
-            
-
-           // console.log('Nouveau projet envoyé avec succès part 1', response);//objet response 
-           // console.log(response.json());// promise {pending}
-            response.json();
+            return response.json();
         })
         .then( work => {
 
@@ -248,21 +249,28 @@ document.getElementById('form-add-work').addEventListener('submit', (event) => {
             hideModals();
             showModal(document.querySelector('#modal-gallery'));
 
+            console.log(work);
+
             //ajouter l'élément à la modale gallery : 
-          //  document.querySelector('#modal-gallery .grid-container').appendChild(modalGalleryBuildElement(work));
+            document.querySelector('#modal-gallery .grid-container').appendChild(modalGalleryBuildElement(work));
+
+            console.log(work);
 
             //ajouter l'élément à la gallery de index :
-          //  document.querySelector('#portfolio .gallery').appendChild(buildWork(work));            
+            document.querySelector('#portfolio .gallery').appendChild(buildWork_withoutCategory(work));  
+            
+           resetForm();
         })
         .catch( error => {
             console.error('Une erreur s\'est produite lors de l\'envoi de l\'image', error);
+            triggerAlertAddWorkError(error) 
         })
 });
 
 
 // Bouton pour valider le formulaire ACTIF ou innactif 
 
-const addWorkElementImage = document.getElementById('uploaded-image');
+const addWorkElementImage = document.getElementById('uploaded-image');  // => inputAddWork
 const addWorkElementInput1 = document.getElementById('input-title');
 const addWorkElementInput2 = document.getElementById('selector-categories');
 
@@ -270,9 +278,9 @@ const addWorkSubmitButton = document.getElementById('submit-new-work');
 
 function toggleButtonStateAddWork(){
     console.log('INPUT.ADD.WORK CHANGED2');// qu'est ce qui change l'image
-    console.log(addWorkElementInput1.value.trim(), addWorkElementInput1.value.trim(), addWorkElementImage.alt)
+    console.log(addWorkElementInput1.value.trim(), addWorkElementInput2.value.trim(), addWorkElementImage.alt==='')
 
-    if(addWorkElementInput1.value.trim() ==='' || addWorkElementInput1.value.trim() ==='' || addWorkElementImage.alt===''){  
+    if(addWorkElementInput1.value.trim() ==='' || addWorkElementInput2.value.trim() ==='' || addWorkElementImage.alt===''){  
         addWorkSubmitButton.classList.remove('unlocked');
         console.log('DISABLED', addWorkElementImage);
     }
@@ -290,3 +298,38 @@ addWorkElementInput2.addEventListener('input', toggleButtonStateAddWork);
 
 
 
+// ALERT
+
+// alert-login-error / alert-login-success
+
+function triggerAlertAddWorkError(message) {
+    var alertLoginError = document.getElementById('alert-submit-work-error');
+
+    alertLoginError.textContent = message;
+
+    alertLoginError.classList.add('active');
+
+    setTimeout( () => {
+        alertLoginError.classList.remove('active');
+    }, 3000)
+}
+
+
+
+
+
+
+
+
+//reset form
+
+function resetForm() {
+    document.getElementById("form-add-work").reset();
+
+    imageUploaded.src = '';
+    imageUploaded.alt = '';
+    uploaderDropAnImage.classList.remove('desactive');
+    deleteLoadedImageElement.classList.remove('active');
+
+    toggleButtonStateAddWork();
+  }

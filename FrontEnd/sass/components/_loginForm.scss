@@ -64,33 +64,3 @@
     text-decoration: underline;
 }
 
-
-/////////////
-/// ALERT ///
-/////////////
-
-.alert-error {
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-    padding: 20px 0px;
-
-    border-radius: 10px;
-    background-color: #F8D7D9;
-    color: #8A3C43;
-
-    opacity: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: all 250ms ease-in-out;
-
-    &.active {
-        opacity: 1;
-        transform: scaleY(1);
-    }
-}
